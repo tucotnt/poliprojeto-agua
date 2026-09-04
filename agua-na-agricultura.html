@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A água que rega o mundo</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap');
+
+  :root{
+    --paper: #F5F0E1;
+    --paper-2: #ECE3CB;
+    --soil: #33261B;
+    --soil-2: #4A3826;
+    --field: #3E6B34;
+    --field-light: #6E9A4F;
+    --water: #1C6E8C;
+    --water-light: #4C9BB8;
+    --sun: #E3A33D;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--paper);
+    color: var(--soil);
+    font-family: 'Public Sans', sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,h2,h3{
+    font-family: 'Fraunces', serif;
+    color: var(--soil);
+    margin: 0 0 .4em 0;
+    line-height: 1.15;
+  }
+  p{ margin: 0 0 1em 0; }
+  .wrap{ max-width: 640px; margin: 0 auto; padding: 0 22px; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position: relative;
+    padding: 54px 0 44px;
+    background: linear-gradient(180deg, #DCEFE0 0%, var(--paper) 78%);
+    overflow: hidden;
+    text-align: center;
+  }
+  .hero .eyebrow{
+    font-size: .82rem;
+    letter-spacing: .02em;
+    color: var(--water);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .hero h1{
+    font-size: 2.35rem;
+    font-weight: 700;
+  }
+  .hero h1 em{
+    font-style: italic;
+    color: var(--water);
+  }
+  .hero p.lede{
+    font-size: 1.02rem;
+    color: var(--soil-2);
+    max-width: 460px;
+    margin: 14px auto 0;
+  }
+  .drop-rain{
+    position: relative;
+    height: 46px;
+    margin-top: 18px;
+  }
+  .drop{
+    position: absolute;
+    top: -20px;
+    width: 8px;
+    height: 12px;
+    background: var(--water-light);
+    border-radius: 0 60% 60% 60%;
+    transform: rotate(45deg);
+    animation: fall 1.8s ease-in infinite;
+    opacity: .85;
+  }
+  @keyframes fall{
+    0%   { transform: translateY(0) rotate(45deg); opacity: 0; }
+    15%  { opacity: .9; }
+    100% { transform: translateY(58px) rotate(45deg); opacity: 0; }
+  }
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{ padding: 40px 0; }
+  .tag{
+    display:inline-block;
+    font-size: .74rem;
+    font-weight: 700;
+    letter-spacing: .03em;
+    color: var(--field);
+    background: #E4EEDB;
+    padding: 4px 10px;
+    border-radius: 3px;
+    margin-bottom: 12px;
+  }
+  .tag.water{ color: var(--water); background: #DCEBF0; }
+  .tag.sun{ color: #8A5A11; background: #F6E6C6; }
+
+  section h2{ font-size: 1.5rem; }
+
+  /* ---------- STORY / RIVER LINE ---------- */
+  .story{
+    border-left: 3px solid var(--water-light);
+    padding-left: 20px;
+    margin: 22px 0;
+  }
+  .story p{ color: var(--soil-2); }
+
+  /* ---------- STAT SCALE ---------- */
+  .scale-block{ margin: 22px 0 30px; }
+  .scale-row{
+    margin-bottom: 20px;
+  }
+  .scale-row .label{
+    display:flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-weight: 600;
+    margin-bottom: 6px;
+    font-size: .95rem;
+  }
+  .scale-row .label .pct{
+    font-family: 'Fraunces', serif;
+    font-size: 1.3rem;
+    color: var(--water);
+  }
+  .track{
+    width: 100%;
+    height: 12px;
+    background: var(--paper-2);
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid #DCCFA9;
+  }
+  .fill{
+    height: 100%;
+    border-radius: 6px 0 0 6px;
+    background: linear-gradient(90deg, var(--water) 0%, var(--water-light) 100%);
+  }
+  .fill.green{ background: linear-gradient(90deg, var(--field) 0%, var(--field-light) 100%); }
+  .fill.sun{ background: linear-gradient(90deg, #C97F1A 0%, var(--sun) 100%); }
+  .scale-row .note{ font-size: .82rem; color: #6B5C46; margin-top: 4px; }
+
+  /* ---------- IRRIGATION COMPARISON ---------- */
+  .irrig{
+    background: var(--soil);
+    color: #F1E9D2;
+    border-radius: 14px;
+    padding: 26px 22px 20px;
+    margin: 18px 0;
+  }
+  .irrig h2, .irrig h3{ color: #F7F1DE; }
+  .irrig .tag{ background: #55442F; color: #F1D9A6; }
+  .method{ margin-bottom: 18px; }
+  .method .mname{ display:flex; justify-content: space-between; font-weight:600; font-size:.95rem; margin-bottom:6px;}
+  .method .mtrack{ background: #4A3826; border: 1px solid #6B563A; }
+  .method:last-child{ margin-bottom: 4px; }
+  .irrig .fine{ font-size: .8rem; color: #C9BB98; margin-top: 14px; }
+
+  /* ---------- CURIOSITY FLAGS ---------- */
+  .flags{ display:flex; flex-direction: column; gap: 14px; margin-top: 20px; }
+  .flag{
+    position: relative;
+    background: #fff;
+    border: 1px solid #E3D8B8;
+    border-left: 5px solid var(--field);
+    border-radius: 4px;
+    padding: 14px 16px 14px 18px;
+  }
+  .flag.blue{ border-left-color: var(--water); }
+  .flag.gold{ border-left-color: var(--sun); }
+  .flag .fnum{
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--soil);
+    display:block;
+    margin-bottom: 3px;
+  }
+  .flag p{ margin: 0; font-size: .92rem; color: var(--soil-2); }
+
+  /* ---------- CLOSING ---------- */
+  .closing{
+    text-align: center;
+    padding: 46px 0 60px;
+  }
+  .closing h2{ font-size: 1.4rem; }
+  .closing p{ color: var(--soil-2); max-width: 440px; margin: 0 auto 8px; }
+  .signature{
+    margin-top: 28px;
+    font-size: .82rem;
+    color: #8B7A5C;
+    border-top: 1px solid #DCCFA9;
+    padding-top: 16px;
+  }
+
+  @media (min-width: 560px){
+    .hero h1{ font-size: 2.8rem; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="wrap">
+      <div class="eyebrow">FEIRA DE CIÊNCIAS · ÁGUA NA AGRICULTURA</div>
+      <h1>A água que <em>rega</em> o mundo</h1>
+      <p class="lede">Antes de chegar ao seu prato, cada alimento percorre um longo caminho pela água — da chuva ao rio, do rio ao canal, do canal até a raiz da planta.</p>
+      <div class="drop-rain">
+        <div class="drop" style="left: 30%; animation-delay: 0s;"></div>
+        <div class="drop" style="left: 48%; animation-delay: .5s;"></div>
+        <div class="drop" style="left: 66%; animation-delay: 1s;"></div>
+        <div class="drop" style="left: 40%; animation-delay: 1.4s;"></div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <span class="tag water">A história</span>
+      <h2>De onde vem a água da lavoura?</h2>
+      <div class="story">
+        <p>Tudo começa na chuva, nos rios ou em poços subterrâneos. Essa água é captada e levada até o campo por canais, tubulações ou caminhões-pipa. Ali, sistemas de irrigação — como aspersores (que simulam chuva) ou gotejadores (que pingam água direto na raiz) — entregam a água até a planta.</p>
+        <p>Parece simples, mas a agricultura é a atividade humana que mais consome água doce do planeta — e também uma das que mais desperdiça.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <span class="tag">Números que impressionam</span>
+      <h2>Quanto da água do planeta vai para a lavoura?</h2>
+      <div class="scale-block">
+
+        <div class="scale-row">
+          <div class="label"><span>Água doce usada pela agricultura, no mundo</span><span class="pct">70%</span></div>
+          <div class="track"><div class="fill" style="width:70%"></div></div>
+          <div class="note">Segundo a FAO e a ONU — mais do que indústria e uso doméstico juntos.</div>
+        </div>
+
+        <div class="scale-row">
+          <div class="label"><span>Água usada pela agricultura, no Brasil</span><span class="pct">~50–72%</span></div>
+          <div class="track"><div class="fill green" style="width:72%"></div></div>
+          <div class="note">A estimativa varia conforme o estudo e a região do país.</div>
+        </div>
+
+        <div class="scale-row">
+          <div class="label"><span>Água que se perde por evaporação na irrigação</span><span class="pct">até 60%</span></div>
+          <div class="track"><div class="fill sun" style="width:60%"></div></div>
+          <div class="note">Reduzir esse desperdício em só 10% bastaria para abastecer o dobro da população mundial.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="irrig">
+        <span class="tag">Comparando técnicas</span>
+        <h2>Nem toda irrigação gasta a mesma água</h2>
+
+        <div class="method">
+          <div class="mname"><span>Gotejamento (gota a gota na raiz)</span><span>90–100%</span></div>
+          <div class="track mtrack"><div class="fill" style="width:95%"></div></div>
+        </div>
+
+        <div class="method">
+          <div class="mname"><span>Aspersão (chuva artificial)</span><span>80–85%</span></div>
+          <div class="track mtrack"><div class="fill" style="width:82%"></div></div>
+        </div>
+
+        <div class="method">
+          <div class="mname"><span>Inundação / sulcos no solo</span><span>60–70%</span></div>
+          <div class="track mtrack"><div class="fill" style="width:65%"></div></div>
+        </div>
+
+        <p class="fine">Os números mostram a eficiência de cada método — ou seja, quanto da água aplicada realmente chega até a raiz da planta, sem se perder pelo caminho.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <span class="tag gold">Curiosidades rápidas</span>
+      <h2>Você sabia?</h2>
+      <div class="flags">
+
+        <div class="flag blue">
+          <span class="fnum">Irrigar produz mais comida</span>
+          <p>Apenas 17% das terras cultivadas no mundo são irrigadas, mas essa pequena fatia é responsável por 40% de toda a comida produzida no planeta.</p>
+        </div>
+
+        <div class="flag">
+          <span class="fnum">Um "banho" de 1.000 a 3.000 litros</span>
+          <p>É a quantidade média de água necessária para produzir apenas 1 tonelada de grãos como arroz, soja ou milho.</p>
+        </div>
+
+        <div class="flag gold">
+          <span class="fnum">A irrigação de precisão multiplica a colheita</span>
+          <p>Quando bem planejada, a irrigação pode aumentar a produção agrícola em até 3 vezes, comparada ao plantio que depende só da chuva.</p>
+        </div>
+
+        <div class="flag blue">
+          <span class="fnum">O gotejamento pode economizar 90%</span>
+          <p>Comparado a métodos tradicionais como a inundação do solo, sistemas de gotejamento bem instalados chegam a economizar até 90% da água usada.</p>
+        </div>
+
+        <div class="flag">
+          <span class="fnum">Nem só de plantas vive a fazenda</span>
+          <p>No Brasil, boa parte da água usada no campo também mata a sede dos rebanhos de gado — e uma pequena fração abastece as casas da zona rural.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="closing">
+    <div class="wrap">
+      <h2>Consciência que transforma</h2>
+      <p>Cada gota que chega até uma plantação passou por um longo caminho — e cada alimento no seu prato carrega, escondida, uma quantidade enorme de água.</p>
+      <p>Escolher técnicas de irrigação mais eficientes, evitar o desperdício e valorizar quem cuida da terra são formas de cuidar da água de todos nós.</p>
+      <div class="signature">Maquete "Água na Agricultura" · Feira de Ciências</div>
+    </div>
+  </div>
+
+</body>
+</html>
